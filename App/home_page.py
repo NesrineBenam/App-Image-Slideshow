@@ -39,7 +39,7 @@ logo = "https://i.pinimg.com/originals/3e/e9/12/3ee912433ff51be233eb9117400da303
 
 # Build Navigation bar layout
 navbar = dbc.Navbar(
-    dbc.Container(
+    dbc.Container( # html.div
         [
             dbc.Row(
                 [
@@ -62,11 +62,45 @@ navbar = dbc.Navbar(
     dark= True, # Contrast Text,
 
 )
+def make_album_card(footer_name):
+    """ Returns a Card with """
+    card = [dbc.CardImg(src="https://media.timeout.com/images/105976422/1024/576/image.jpg", className="img-fluid"),
+            dbc.CardBody(
+             html.P("Hashtags # ", )
+            ),
+        dbc.CardFooter(footer_name),
+    ]
+    return card
 
-# Build App Layout
-app.layout = html.Div(
-    [navbar]
+
+home_page_body = html.Div([
+        dbc.Row(
+            [
+                dbc.Col(dbc.Card(make_album_card(2023), color="secondary", inverse=True, className="p-1")),
+                dbc.Col(dbc.Card(make_album_card(2022), color="secondary", inverse=True, className="p-1")),
+                dbc.Col(dbc.Card(make_album_card(2021), color="secondary", inverse=True, className="p-1")),
+
+            ],
+            className="mb-4"
+        ),
+        dbc.Row(
+            [
+                dbc.Col(dbc.Card(make_album_card(2020), color="secondary", inverse=True, className="p-1")),
+                dbc.Col(dbc.Card(make_album_card(2019), color="secondary", inverse=True, className="p-1")),
+                dbc.Col(dbc.Card(make_album_card(2018), color="secondary", inverse=True, className="p-1")),
+
+            ],
+            className="mb-4"
+        ),
+    ],
+    className="p-2 "
 )
+
+###### Build App Layout
+app.layout = html.Div(
+    [navbar, home_page_body]
+)
+
 
 # Run App
 if __name__ == '__main__' :
